@@ -1,0 +1,61 @@
+@startuml
+!theme plain
+left to right direction
+
+package "Python Bottle" {
+  component app.py
+  node Views{
+    component breadth_first_page.py
+    component depth_first_page.py
+    component alg_crascal_page.py
+  }
+  Views --> app.py
+  component breadth_first_search.py
+  breadth_first_search.py --> breadth_first_page.py
+  component depth_first_search.py
+  depth_first_search.py --> depth_first_page.py
+  component alg_crascal.py
+  alg_crascal.py --> alg_crascal_page.py
+}
+
+package Templates{
+   component layout.tpl
+   component breadth_first.tpl
+   component depth_first.tpl
+   component alg_crascal.tpl
+   breadth_first.tpl --> layout.tpl
+   depth_first.tpl --> layout.tpl
+   alg_crascal.tpl --> layout.tpl
+}
+
+Templates --> Views
+
+
+package "Static"{
+
+
+package "js scripts" {
+  component Scripts
+}
+
+package "Styles" {
+  component general.css
+  component tailwind.css
+}
+
+package "Images" {
+  
+}
+}
+
+
+ 
+
+Images --> Styles
+
+Styles --> Templates
+
+"js scripts" --> Templates
+
+
+@enduml
